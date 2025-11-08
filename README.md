@@ -62,24 +62,3 @@ docker compose down
 ```
 
 ---
-
-## 📝 Git Setup
-
-### Add, Commit, and Push Everything
-
-```bash
-# Stage all files
-git add .
-
-# Make the first commit
-git commit -m "Initial 2-tier app (Flask + Nginx) with Docker Compose"
-
-# Set your main branch name
-git branch -M main
-
-# Connect to the GitHub repo
-git remote add origin https://github.com/voncleph/fintech-app-docker.git
-
-# Push your code
-git push -u origin main
-```
