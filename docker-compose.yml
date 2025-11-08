@@ -1,0 +1,21 @@
+# This is the blueprint for your 2-tier application
+services:
+
+  frontend:
+    build: ./frontend  # Tells Compose to build the Dockerfile in the 'frontend' folder
+    ports:
+      - "8080:80"      # Maps your host port 8080 to the container's port 80
+    networks:
+      - fintech-net  # Connects this service to our custom network
+
+  backend:
+    build: ./backend   # Tells Compose to build the Dockerfile in the 'backend' folder
+    ports:
+      - "5000:5000"    # Maps host port 5000 for *direct testing* of the API
+    networks:
+      - fintech-net  # Connects this service to the same network
+
+# This is the top-level key to define our custom network
+networks:
+  fintech-net:
+    driver: bridge     # Creates a user-defined bridge network, just like you did manually
