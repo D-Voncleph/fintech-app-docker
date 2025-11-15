@@ -6,5 +6,32 @@
 <body>
   <h1>Welcome to MyFinTech App</h1>
   <p>This is the Nginx frontend. It's running!</p>
+  
+  <hr>
+  
+  <h2>Backend Connection Status:</h2>
+  <p id="status">Loading...</p>
+
+  <script>
+    // This script runs in the user's browser
+    // It makes a request to its own server (Nginx) at the /api/test endpoint
+    fetch('/api/test')
+      .then(response => response.json())
+      .then(data => {
+        // Nginx proxied the request to the backend,
+        // and this is the JSON data we got back!
+        
+        if (data.message) {
+          document.getElementById('status').innerText = data.message;
+        } else if (data.error) {
+          document.getElementById('status').innerText = `Error: ${data.error}`;
+        }
+      })
+      .catch(error => {
+        // This will happen if the proxy or backend is down
+        console.error('Error fetching data:', error);
+        document.getElementById('status').innerText = 'Failed to connect to backend API.';
+      });
+  </script>
 </body>
 </html>

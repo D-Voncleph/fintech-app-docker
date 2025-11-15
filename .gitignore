@@ -4,4 +4,4 @@ __pycache__/
 
 # IDE
 .vscode/
-.idea/
+.idea/.env

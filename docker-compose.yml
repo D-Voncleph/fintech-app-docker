@@ -1,21 +1,38 @@
-# This is the blueprint for your 2-tier application
 services:
-
   frontend:
-    build: ./frontend  # Tells Compose to build the Dockerfile in the 'frontend' folder
+    build: ./frontend
     ports:
-      - "8080:80"      # Maps your host port 8080 to the container's port 80
+      - "8080:80"
     networks:
-      - fintech-net  # Connects this service to our custom network
+      - fintech-net
 
   backend:
-    build: ./backend   # Tells Compose to build the Dockerfile in the 'backend' folder
-    ports:
-      - "5000:5000"    # Maps host port 5000 for *direct testing* of the API
+    build: ./backend
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - db
     networks:
-      - fintech-net  # Connects this service to the same network
+      - fintech-net
+    # We will add 'depends_on' and 'environment' for the backend tomorrow
 
-# This is the top-level key to define our custom network
+  db:
+    image: postgres:14-alpine
+    # Use the variables from the .env file
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      # Map the named volume to the container's data directory
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - fintech-net
+
 networks:
   fintech-net:
-    driver: bridge     # Creates a user-defined bridge network, just like you did manually
+    driver: bridge
+
+# This is the new top-level key to declare the named volume
+volumes:
+  db-data:
