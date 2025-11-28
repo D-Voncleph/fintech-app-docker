@@ -8,6 +8,13 @@ This is a complete 3-tier web application built with Docker Compose. It consists
 
 The entire stack is orchestrated by Docker Compose, allowing it to be run with a single command.
 
+## ✨ Key Features
+* **3-Tier Architecture:** Complete separation of concerns (Nginx Frontend, Flask Backend, Postgres DB).
+* **Docker Compose:** Full stack orchestration with a single entry point.
+* **Multi-Stage Builds:** Optimized Dockerfiles for reduced image size and enhanced security.
+* **Private Networking:** Backend and Database are isolated on a custom bridge network with no public ports exposed.
+* **Reverse Proxy:** Nginx configured to route traffic and hide backend services.
+
 ## 🐳 Docker Hub Images
 
 The container images for this project are hosted publicly on Docker Hub:

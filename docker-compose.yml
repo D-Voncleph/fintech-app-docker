@@ -7,7 +7,8 @@ services:
       - fintech-net
 
   backend:
-    build: ./backend
+    image: voncleph/fintech-backend:v1.1  # <--- Update to v1.1
+    # build: ./backend
     environment:
       - DATABASE_URL=${DATABASE_URL}
     depends_on:
