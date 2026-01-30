@@ -1,6 +1,6 @@
 # 3-Tier FinTech Application (Docker Compose)
-
-This is a complete 3-tier web application built with Docker Compose. It consists of:
+#Testing Jenkins Webhook Trigger.
+This repo is a complete 3-tier web application built with Docker Compose. It consists of:
 
 1. **Frontend:** Nginx (acting as a reverse proxy)
 2. **Backend:** Python Flask API
